@@ -6,33 +6,33 @@ clc
 
 
 % Initialize parameters for EEGLAB 
-eeglab_path = 
+eeglab_path = %add here EEGLAB software path
 addpath(genpath(eeglab_path))
 
-% Define raw input folder. % Defining the path where to take EEG file
-input_folder = 
+% Define raw input folder. 
+input_folder = % Defining the path where to take EEG file
 
 % Define raw output folder (raw .set datasets) %return EEG.set file ready to be loaded on EEGLAB
-output_folder = 
+output_folder = %defining the output folder that will collect EEG.set data
 
 % Create output folder if it doesnt exist
 if ~exist("output_folder", 'dir')
     mkdir(output_folder);
 end
 
-% Ottieni tutti i file EEG nella cartella di interesse 'gonogo'
-files = dir(fullfile(input_folder, '*.vhdr')); % Specificare l'estensione
+% Load all EEG files from the imput folder 
+files = dir(fullfile(input_folder, '*.vhdr')); % .vhdr is an example. Here add your EEG file extention
 
 % Start EEGLAB
-eeglab;
+eeglab;       %this command starts EEGLAB. Remember to open MATLAB and select the EEGLAB path
 
 for i = 1:length(files)
-    disp(['Caricamento file:', files(i).name])
-    EEG = pop_loadbv(input_folder, files(i).name); % load .vhdr files
+    disp(['Data Loading:', files(i).name])
+    EEG = pop_loadbv(input_folder, files(i).name); % load .extention files
 
     [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 1, 'setname', 'import');
     
-    % Salvataggio del dataset EEG in .set format
+    % Saving dataset EEG in .set format
     pop_saveset(EEG, 'filename', [files(i).name(1:end-5) '.set'], 'filepath', output_folder)
 end
 
@@ -43,7 +43,7 @@ clear all
 close all
 clc
 
-% Initialize stuff for EEGLAB
+% Initialize path for EEGLAB
 eeglab_path = 
 addpath(genpath(eeglab_path))
 eeglab
@@ -62,8 +62,7 @@ end
 
 
 
-% current directory: seleziono i file dalla input folder che contengono
-% estensione .set 
+% current directory (cd) select files from input folder containing .set extention 
 cd(input_folder)
 input_data = dir('*.set');
 input_file = {input_data.name};
@@ -77,12 +76,12 @@ for i=1:length(input_data)
 
 
 
-%plot EEG per la visual ispection
+%plot EEG for perform visual ispection
     pop_eegplot( EEG, 1, 1, 1);
 
- %rimozione canali EMG non utili
-    EEG=pop_select(EEG, 'rmchannel', {'...','...'});
-    eeglab redraw; %per aggiornare EEGLAB
+ %remove bad channels
+    EEG=pop_select(EEG, 'rmchannel', {'...','...'}); %here add the name of the channels to be deleted
+    eeglab redraw; % refresh EEGLAB
 
 
 %PAUSA PER IL CONTROLLO MANUALE DATI GREZZI:
