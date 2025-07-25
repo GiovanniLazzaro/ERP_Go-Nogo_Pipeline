@@ -1,22 +1,58 @@
 # ERP_Go-Nogo_Pipeline
 ---WORK IN PROGRESS--
-MATLAB scripts for ERP and Go/No-Go task data processing
-
+MATLAB preprocessing scripts for ERP extraction from Go/No-Go task EEG data
 
 ## Description
-Breve descrizione del progetto: cosa fa, perché è utile, a chi serve.
 
-## 📂 Repository structure
-Descrizione delle cartelle e file principali (ad esempio `/scripts`, `/data`, ecc.)
+This project defines a preprocessing pipeline for extracting event-related potentials (ERPs) from EEG data collected during a Go/No-Go task.
+The Go/No-Go task is a well-established cognitive paradigm in which participants are instructed to respond to certain stimuli ("Go") and withhold responses to others ("No-Go"). It is commonly used to assess action restraint and motor inhibition, making it valuable for studying cognitive control in both healthy individuals and patients with neurodegenerative conditions such as Parkinson’s Disease.
+This repository includes MATLAB scripts to:
+Preprocess and clean EEG data
+Epoch continuous data around stimulus events
+Extract ERPs specific to Go and No-Go trials
+Visualize Grand Average ERPs
+Compute ERP metrics, such as amplitude and latency for key components (e.g., N200, P300)
+The goal is to provide a modular and replicable pipeline that facilitates ERP analysis in Go/No-Go studies.
+This project may be useful for neuroscientists, psychologists, or anyone with an interest in neurophysiology-related research
 
-## 🛠️ Requirements
-Elenco dei software e toolbox necessari:
+## Go/Nogo Visual Task paradigm
+The computer that delivered the stimuli was allocated on a desk and participants were seated in a comfortable chair maintaining 
+70 cm from the screen. The experiment was designed using the Psychopy software (PsychoPy v2023.2.3). The computer was linked through an USB cable to the hdEEG acquisition system.
+The ‘go’ stimulus was presented for 100 ms as a green circle on the center of the screen. Instead, the ‘nogo’ stimulus was presented for 100ms as a red circle on the center of the screen. 
+Each stimulus was presented according to a specific proportion (80% “go”-20%”nogo”) for a total of 200 trials.
+Participants were instructed to always respond using a keyboard with their dominant hand and pressing the space bar, as soon as possible,
+only when the ‘go’ stimulus appeared on the screen. For the ‘nogo’ stimulus, participants were instructed to retain the response and do not press any keys.
+Each stimulus was presented in succession with a fixation before (1 sec) and an interstimulus interval (ITI) that ranges between 0.50/0.75/1 sec. Given the regular distance of the stimuli, this range 
+was selected to avoid that predictability of the stimulus could affect habituation to novelty 
+when pressing the press bar. To collect the participant’s response, each time a stimulus was delivered, a trigger box sent a marker to the hdEEG acquisition system to 
+be displayed on the recording screen. In this way it was possible to check, online and offline, the correctness of the participant’s response. The appearance of a “go” and “nogo” 
+stimuli on the task’s screen was marked on the hdEEG recording by the triggers S2 and S8, respectively. This allowed accurately indicating the onset of each stimulus. 
+Additionally, the triggers named S4 and S5 were added to mark the exact onset of each response. The S4 trigger appeared each time the participant responded correctly by 
+pressing the space bar at the “go” stimulus. Conversely, the S5 trigger appeared on the hdEEG trace when the participant erroneously pressed the space bar at the “nogo” stimulus
+
+<img width="1007" height="639" alt="image" src="https://github.com/user-attachments/assets/7af313c4-6463-4090-a76a-981bbb1f1c9d" />
+
+
+
+
+
+
+## Repository structure
+Folder description
+READ ME
+LICENCE
+MAIN
+Scripts
+... 
+
+## Requirements
+This script requires MATLAB and the EEGLAB toolbox for EEG data processing
 - MATLAB 
 - EEGLAB 
 
 
 ##  How to run
-Istruzioni per usare gli script, ad esempio:
+Instruction how to use these script: --- work in progress---
 1. Metti i dati in `data/`
 2. Esegui `scripts/preprocess.m`
 3. Poi `scripts/erp_extraction.m`
@@ -25,16 +61,16 @@ Istruzioni per usare gli script, ad esempio:
 ##  Output
 Descrizione dell’output generato: file, grafici, risultati, ecc.
 
-## 📝Notes
+## Notes
 -  Original data are not included due to privacy. 
-- Un dataset fittizio di esempio è fornito per test.
+-  An example dummy dataset is included to allow testing of the pipeline.( ? )- work in progress - 
 
-## 📄 License
+## License
 This project contains a MIT licence. Please read LICENCE file.
 
-## 👩‍🔬 Authors
+## Authors
 - Giovanni Lazzaro
+- ................
 
-
-## 🤝 Contributing
+## Contributing
 Pull request benvenute! for any problem, please, send an Issue.
