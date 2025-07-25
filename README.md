@@ -30,6 +30,7 @@ stimuli on the task’s screen was marked on the hdEEG recording by the triggers
 Additionally, the triggers named S4 and S5 were added to mark the exact onset of each response. The S4 trigger appeared each time the participant responded correctly by 
 pressing the space bar at the “go” stimulus. Conversely, the S5 trigger appeared on the hdEEG trace when the participant erroneously pressed the space bar at the “nogo” stimulus
 
+Fig.1 This figure represents the Go/Nogo Task paradigm. 
 <img width="1007" height="639" alt="image" src="https://github.com/user-attachments/assets/7af313c4-6463-4090-a76a-981bbb1f1c9d" />
 
 
