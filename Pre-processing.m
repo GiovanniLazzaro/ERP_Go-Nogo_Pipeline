@@ -1,6 +1,4 @@
-
 %%%% Save .set files %%%%%%
-
 
 clear 
 close all
@@ -105,14 +103,3 @@ for i=1:length(input_data)
         'filename', [current_subj(1:end-4) '_preICA.set'], ...
         'filepath',output_folder);
 end
-
-
-
-
-
-    
-
-
-
-
-    
