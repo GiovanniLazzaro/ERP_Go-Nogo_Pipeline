@@ -6,14 +6,14 @@ clc
 
 
 % Initialize parameters for EEGLAB 
-eeglab_path = "/mnt/raid/software/eeglab2024.1";
+eeglab_path = 
 addpath(genpath(eeglab_path))
 
 % Define raw input folder. % Defining the path where to take EEG file
-input_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL';
+input_folder = 
 
 % Define raw output folder (raw .set datasets) %return EEG.set file ready to be loaded on EEGLAB
-output_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL/GNG_HS_SetFiles';
+output_folder = 
 
 % Create output folder if it doesnt exist
 if ~exist("output_folder", 'dir')
@@ -44,16 +44,16 @@ close all
 clc
 
 % Initialize stuff for EEGLAB
-eeglab_path = "/mnt/raid/software/eeglab2024.1";
+eeglab_path = 
 addpath(genpath(eeglab_path))
 eeglab
 
 
 % Define input folder.set
-input_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL/GNG_HS_SetFiles/';
+input_folder = 
 
 % Define output folder pre-ICA datasets .)
-output_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL/GNG_HS_preICA';
+output_folder = 
 
 % Create output  if it doesnt exist
 if ~exist("output_folder", 'dir')
@@ -81,7 +81,7 @@ for i=1:length(input_data)
     pop_eegplot( EEG, 1, 1, 1);
 
  %rimozione canali EMG non utili
-    EEG=pop_select(EEG, 'rmchannel', {'ECD dx','ECD sn'});
+    EEG=pop_select(EEG, 'rmchannel', {'...','...'});
     eeglab redraw; %per aggiornare EEGLAB
 
 
