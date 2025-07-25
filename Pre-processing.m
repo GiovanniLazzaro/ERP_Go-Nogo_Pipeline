@@ -5,14 +5,14 @@ close all
 clc
 
 
-% Initialize stuff for EEGLAB
+% Initialize parameters for EEGLAB 
 eeglab_path = "/mnt/raid/software/eeglab2024.1";
 addpath(genpath(eeglab_path))
 
-% Define raw input folder.
+% Define raw input folder. % Defining the path where to take EEG file
 input_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL';
 
-% Define raw output folder (raw .set datasets)
+% Define raw output folder (raw .set datasets) %return EEG.set file ready to be loaded on EEGLAB
 output_folder = '/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/gonogo/Control/ALL_CONTROL/GNG_HS_SetFiles';
 
 % Create output folder if it doesnt exist
