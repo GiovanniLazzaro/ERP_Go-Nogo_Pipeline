@@ -36,12 +36,13 @@ Fig.1 This figure represents the Go/Nogo Task paradigm.
 
 
 ## Repository structure
-Folder description
-READ ME
+Folder description and Script Overview
+READ ME 
 LICENCE
-MAIN
-Scripts
-... 
+
+### 1. Preprocessing (`preprocessing.m`)
+This script loads EEG data (e.g., `.set` files), performs visual inspection, channel rejection, filtering, and resampling. It prepares the dataset for ICA decomposition.
+### 2. 
 
 ## Requirements
 This script requires MATLAB and the EEGLAB toolbox for EEG data processing
