@@ -35,9 +35,6 @@ Fig.1 This figure represents the Go/Nogo Task paradigm.
 
 
 
-
-
-
 ## Repository structure
 Folder description
 READ ME
@@ -71,7 +68,7 @@ This project contains a MIT licence. Please read LICENCE file.
 
 ## Authors
 - Giovanni Lazzaro
-- ................
+- Sara Lago
 
 ## Contributing
 Pull request benvenute! for any problem, please, send an Issue.
