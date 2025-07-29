@@ -16,7 +16,7 @@ input_folder = % Defining the path where to take EEG file
 output_folder = %defining the output folder that will collect EEG.set data
 
 % Create output folder if it doesnt exist
-if ~exist("output_folder", 'dir')
+if ~exist(output_folder, 'dir')
     mkdir(output_folder);
 end
 
@@ -28,7 +28,7 @@ eeglab;       %this command starts EEGLAB. Remember to open MATLAB and select th
 
 for i = 1:length(files)
     disp(['Data Loading:', files(i).name])
-    EEG = pop_loadbv(input_folder, files(i).name); % load .extention files
+    EEG = pop_loadbv(input_folder, files(i).name); % load .extention files (es .vhdr)
 
     [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 1, 'setname', 'import');
     
@@ -36,10 +36,11 @@ for i = 1:length(files)
     pop_saveset(EEG, 'filename', [files(i).name(1:end-5) '.set'], 'filepath', output_folder)
 end
 
-%%
+
+%%% Part 2 - Pre-processing pre-ICA %%%
 
 
-clear all 
+clear 
 close all
 clc
 
@@ -56,7 +57,7 @@ input_folder =
 output_folder = 
 
 % Create output  if it doesnt exist
-if ~exist("output_folder", 'dir')
+if ~exist(output_folder, 'dir')
     mkdir(output_folder);
 end
 
@@ -71,33 +72,37 @@ input_file = {input_data.name};
 for i=1:length(input_data)
     current_subj = input_data(i).name;
 
-    %load data
+    %load dataset
     EEG=pop_loadset(current_subj,input_folder);
 
 
 
-%plot EEG for perform visual ispection
-    pop_eegplot( EEG, 1, 1, 1);
+%%% Optional, plot EEG for perform visual ispection
+    pop_eegplot( EEG, 1, 1, 1); % use (1,0,0) to pass in batch mode, without interaction 
 
  %remove bad channels
     EEG=pop_select(EEG, 'rmchannel', {'...','...'}); %here add the name of the channels to be deleted
     eeglab redraw; % refresh EEGLAB
 
 
-%PAUSA PER IL CONTROLLO MANUALE DATI GREZZI:
-    disp('step 1: ispezione e rimuovi manualmente artefatti tramite GUI')
-    uiwait(msgbox('ispeziona dati e fai rejection manuale. premi ok per continuare','Pause'));
+%PAUSE and manual data control
+    disp('step 1: inspect the data and manually reject artifactst using the GUI')
+    uiwait(msgbox('Inspect the EEG data and manually reject artifacts. Click OK to continue.','Pause'));
 
 
-    %High pass filter
-    EEG=pop_eegfiltnew(EEG,'locutoff',0.1);
+% === Pre-processing ===
 
-    %Low pass filter
-    EEG=pop_eegfiltnew(EEG,'hicutoff',30);
-
-    %Resample
+        % 1. Resample
     EEG=pop_resample(EEG,250);
 
+    %2. High-pass filter
+    EEG=pop_eegfiltnew(EEG,'locutoff',0.1);
+
+    %3. Low-pass filter
+    EEG=pop_eegfiltnew(EEG,'hicutoff',30);
+
+    % Save file pre-ICA
+    
     EEG=pop_saveset(EEG, ...
         'filename', [current_subj(1:end-4) '_preICA.set'], ...
         'filepath',output_folder);
