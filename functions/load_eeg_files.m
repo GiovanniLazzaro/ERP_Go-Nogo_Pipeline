@@ -4,6 +4,8 @@
 
 function load_EEG_files(files, output_folder)
 
+    % insert here some checks that stop if the input folder does not exist or if there are no files in the folder
+
     for i = 1:length(files)
     disp(['Data Loading:', files(i).name])
     EEG = pop_loadbv(input_folder, files(i).name); % load .extention files (es .vhdr)
