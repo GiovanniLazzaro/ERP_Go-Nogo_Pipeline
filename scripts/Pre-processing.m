@@ -9,6 +9,8 @@ clc
 eeglab_path = %add here EEGLAB software path
 addpath(genpath(eeglab_path))
 
+addpath(genpath('../functions')) % add functions path
+
 % Define raw input folder. 
 input_folder = % Defining the path where to take EEG file
 
@@ -26,16 +28,7 @@ files = dir(fullfile(input_folder, '*.vhdr')); % .vhdr is an example. Here add y
 % Start EEGLAB
 eeglab;       %this command starts EEGLAB. Remember to open MATLAB and select the EEGLAB path
 
-for i = 1:length(files)
-    disp(['Data Loading:', files(i).name])
-    EEG = pop_loadbv(input_folder, files(i).name); % load .extention files (es .vhdr)
-
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 1, 'setname', 'import');
-    
-    % Saving dataset EEG in .set format
-    pop_saveset(EEG, 'filename', [files(i).name(1:end-5) '.set'], 'filepath', output_folder)
-end
-
+load_eeg_files(files, output_folder)
 
 %%% Part 2 - Pre-processing pre-ICA %%%
 
