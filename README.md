@@ -69,7 +69,7 @@ This project contains a MIT licence. Please read LICENCE file.
 
 ## Authors
 - Giovanni Lazzaro
-- Sara Lago
+
 
 ## Contributing
 Pull request benvenute! for any problem, please, send an Issue.
