@@ -37,6 +37,24 @@ Fig.1 This figure represents the Go/Nogo Task paradigm.
 
 ## Repository structure
 Folder description and Script Overview
+project folder: 
+│── run_pipeline.m      % Main script: esegue l'intera pipeline richiamando gli step
+│── config.m            % Configuration Scripts  (it contains path, parameters)
+│
+├── scripts/            % Contains script of each pre-processing step
+│   ├── step1_load_data.m
+│   ├── step2_ch.rejection.m
+│   ├── step3_filters.m
+│   └── step4_run_ICA.m ....
+│
+└── functions/          %   Single function (each file contains one function, name=function)
+    ├── load_data.m
+    ├── filter_data.m
+    ├── run_ica.m
+    └── ...
+
+Other files: 
+
 READ ME 
 LICENCE
 
