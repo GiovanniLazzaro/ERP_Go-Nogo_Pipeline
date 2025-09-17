@@ -37,30 +37,53 @@ Fig.1 This figure represents the Go/Nogo Task paradigm.
 
 ## Repository structure
 Folder description and Script Overview
-project folder: 
-│── run_pipeline.m      % Main script: esegue l'intera pipeline richiamando gli step
-│── config.m            % Configuration Scripts  (it contains path, parameters)
-│
-├── scripts/            % Contains script of each pre-processing step
-│   ├── step1_load_data.m
-│   ├── step2_ch.rejection.m
-│   ├── step3_filters.m
-│   └── step4_run_ICA.m ....
-│
-└── functions/          %   Single function (each file contains one function, name=function)
-    ├── load_data.m
-    ├── filter_data.m
-    ├── run_ica.m
-    └── ...
 
-Other files: 
+# EEG Preprocessing Pipeline
 
-READ ME 
-LICENCE
+This repository contains a modular MATLAB pipeline for EEG preprocessing (from raw data loading to ICA).  
+The project is organized into scripts for each processing step and functions for reusable code blocks.  
+ 
 
-### 1. Preprocessing (`preprocessing.m`)
-This script loads EEG data (e.g., `.set` files), performs visual inspection, channel rejection, filtering, and resampling. It prepares the dataset for ICA decomposition.
-### 2. 
+##  File and Folder Description
+
+### `run_pipeline.m`
+Main entry point of the project.  
+Runs the full preprocessing pipeline step by step, using the configuration and calling scripts/functions.  
+
+### `config.m`
+Centralized configuration file.  
+Contains paths, file extensions, preprocessing parameters (filters, ICA flag, etc.).  
+
+### `scripts/`
+Folder containing **high-level scripts** for each preprocessing step:
+- `step1_load_data.m` → loads raw EEG data into MATLAB/EEGLAB  
+- `step2_ch_rejection.m` → rejects bad channels or trials  
+- `step3_filters.m` → applies preprocessing filters  
+- `step4_run_ICA.m` → performs ICA decomposition  
+
+### `functions/`
+Folder containing **single reusable functions**.  
+Each file corresponds to one function, named consistently:
+- `load_data.m` → function to load EEG data  
+- `filter_data.m` → function to apply filters  
+- `run_ica.m` → function to run ICA  
+
+### Other files
+- **README** → project description and usage instructions  
+- **LICENSE** → license for project distribution  
+
+---
+
+## Usage -  How to run
+instruction how to use these script:  -- work in progress --
+
+1. Clone the repository  
+2. Open MATLAB  
+3. Edit `config.m` to set your data paths and parameters  
+4. Run the full pipeline:  
+   ```matlab
+   run_pipeline
+
 
 ## Requirements
 This script requires MATLAB and the EEGLAB toolbox for EEG data processing
@@ -68,15 +91,8 @@ This script requires MATLAB and the EEGLAB toolbox for EEG data processing
 - EEGLAB 
 
 
-##  How to run
-Instruction how to use these script: --- work in progress---
-1. Metti i dati in `data/`
-2. Esegui `scripts/preprocess.m`
-3. Poi `scripts/erp_extraction.m`
-4. E infine `scripts/gonogo_analysis.m`
-
 ##  Output
-Descrizione dell’output generato: file, grafici, risultati, ecc.
+work in progress
 
 ## Notes
 -  Original data are not included due to privacy. 
@@ -88,6 +104,5 @@ This project contains a MIT licence. Please read LICENCE file.
 ## Authors
 - Giovanni Lazzaro
 
-
 ## Contributing
-Pull request benvenute! for any problem, please, send an Issue.
+Pull request benvenute!!! for any problem, please, send an Issue.
