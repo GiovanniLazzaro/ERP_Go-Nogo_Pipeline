@@ -1,4 +1,20 @@
+%% How to use - CONFIG FILE - %%
+%________________________________________________________________________________
+% This file contains personal settings and local paths needed to run
+% the project. It does not contain functional code, but defines variables such as:
+%
+%   eeglab_path  : path to your local EEGLAB installation
+%   data_path    : path to your EEG data
+%
+% Each user should create a local copy of this file (config.m) and
+% update the paths according to their system. Do not include sensitive
+% information on GitHub. Only a template file (config.m) with
+% placeholder or empty values should be uploaded to the public repository.
+%_______________________________________________________________________________
+
+
 function cfg = config()
+
 % CONFIG - Configuration parameters for ERP Go/No-Go pipeline
 %
 % Output:
@@ -12,6 +28,7 @@ function cfg = config()
 % Date: [ TODAY]
 
     %% --- PATH ---
+    cfg.eeglab_path = (".software/eeglab2025.1") % Path to EEGLAB
     cfg.dataset_path = './data/';             % Row data folder
     cfg.output_path  = './results/';          % Results folder
     cfg.subject_id   = 'sub-01';              % ID subject
