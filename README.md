@@ -46,7 +46,7 @@ The project is organized into scripts for each processing step and functions for
 
 ##  File and Folder Description
 
-### `run_pipeline.m`
+### `main_pipeline.m`
 Main entry point of the project.  
 Runs the full preprocessing pipeline step by step, using the configuration and calling scripts/functions.  
 
