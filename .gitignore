@@ -1,3 +1,9 @@
 #ignore file
 .vhdr
 .set
+data_raw/
+data_imported/
+data_filtered/
+data_epoched/
+data_ica/
+data_clean/
