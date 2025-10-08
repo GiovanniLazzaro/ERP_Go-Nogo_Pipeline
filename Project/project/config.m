@@ -35,12 +35,12 @@ function cfg = config()
     cfg.project_root = 'C:\EEG_project';       
 
     % Input/Output path for each pre-processing stage:
-    cfg.raw_folder = fullfile(project_root,'data_raw');                  % Row data folder
-    cfg.import_folder  =  fullfile(project_root,'data_imported');        % .set data imported folder
-    cfg.filtered_folder =  fullfile(project_root,'data_filtered');       % folder with filtered EEG
-    cfg.epoch_folder =  fullfile(project_root,'data_epoched');
-    cfg.ica_folder =  fullfile(project_root,'data_ica');
-    cfg.clean_folder = fullfile(project_root,'data_clean');
+    cfg.raw_folder = fullfile(cfg.project_root,'data_raw');                  % Row data folder
+    cfg.import_folder  =  fullfile(cfg.project_root,'data_imported');        % .set data imported folder
+    cfg.filtered_folder =  fullfile(cfg.project_root,'data_filtered');       % folder with filtered EEG
+    cfg.epoch_folder =  fullfile(cfg.project_root,'data_epoched');
+    cfg.ica_folder =  fullfile(cfg.project_root,'data_ica');
+    cfg.clean_folder = fullfile(cfg.project_root,'data_clean');
 
     % Subject info
     cfg.subject_id   = 'sub-01';              % ID subject
