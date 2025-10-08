@@ -24,21 +24,21 @@
 
 config; %this loads all variables defined in config.m file, incluin input/output folder path
 
-function load_EEG_files(raw_folder,import_folder,file_ext) %from Raw data folder to output folder. %'*.vhdr'
+function load_EEG_files( cfg, file_ext) %from Raw data folder to output folder. %'*.vhdr'
 
   %create output folder if it doesn't exist
 
-  if ~exist(output_folder, 'dir') %in data_raw doesn't exist create it. see config.m
-    mkdir(output_folder);
+  if ~exist(cfg.import_folder, 'dir') %in data_raw doesn't exist create it. see config.m
+    mkdir(cfg.import_folder);
     fprintf('Created output folder %\n', import_folder)
   end
 
 
   %--- List all files with the specific extension ---
 
-  files = dir(fullfile(raw_folder,file_ext));
+  files = dir(fullfile(cfg.raw_folder,file_ext));
   if isempty(files)
-      warning('No files found in %s with extension %s', raw_folder, file_ext);
+      warning('No files found in %s with extension %s', cfg.raw_folder, file_ext);
       return;
   end
 
@@ -47,8 +47,8 @@ function load_EEG_files(raw_folder,import_folder,file_ext) %from Raw data folder
   for i = 1:length(files)
       fprintf('\n[%d/%d] Loading file: %s\n', i, length(files),files(i).name);
 
-      %load raw EEG data( BrainVision format)
-      EEG = pop_loadbv(raw_folder, files(i).name);
+      %load raw EEG data(  bv = BrainVision format)
+      EEG = pop_loadbv(cfg.raw_folder, files(i).name);
 
       % Assign dataset name
       [~,name,~] = fileparts(files(i).name);
@@ -59,7 +59,7 @@ function load_EEG_files(raw_folder,import_folder,file_ext) %from Raw data folder
 
 
       %Save dataset as .set file
-      pop_saveset(EEG,'filename',[name '.set'],'filepath',import_folder);
+      pop_saveset(EEG,'filename',[name '.set'],'filepath',cfg.import_folder);
       fprintf('Saved as: %s\n', fullfile(import_folder, [name '.set']));
   end
   
