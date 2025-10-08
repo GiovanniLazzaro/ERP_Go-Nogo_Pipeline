@@ -8,7 +8,7 @@
 %   1. Load configuration from config.m (paths, parameters, etc.)
 %   2. Initialize EEGLAB, making all its functions available for use
 %
-% Note: Users should create their own config.m based on config_template.m
+% Note: Users should create their own config.m template based on config.m
 %       and adjust paths according to their system.
 
 %% Load configuration
