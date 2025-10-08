@@ -20,10 +20,11 @@ fprintf('\n===== STARTING ERP GO/NO-GO PIPELINE =====\n');
 %%  Step 0: 
 fprintf('\n[Step 0] Loading configuration...\n');
 cfg = config();
+disp(cfg)
 
 %%  Step 1: 
 fprintf('\n[Step 1] Initializing EEGLAB...\n');
-init_eeglab(eeglab_path);
+init_eeglab(cfg.eeglab_path);
 
 %% Step 2: 
 fprintf('\n[Step 2] Importing raw EEG files...\n');
