@@ -1,14 +1,21 @@
 % ========================================================================
-% step1_load_data.m
-% Initialize EEGLAB and load raw EEG files
+% load_eeg.m
+% This script initialize EEGLAB . loads raw EEG files and converts them to .set format
+% using the function load_EEG.m
 % ========================================================================
 
-function step1_load_data(cfg)
-    % Initialize EEGLAB
-    init_eeglab(cfg.eeglab_path);
+clarvars - except cfg; %clear variables except config.
+%% Step 0: Load configuration (if not loaded)
 
-    % Process EEG files
-    process_eeg_files(cfg.input_folder, cfg.output_folder, cfg.file_ext);
-
-    disp('Step 1 completed: EEG data loaded and saved in .set format.');
+if ~exist('cfg' ,'var')
+   cfg = config();
 end
+
+%% Step 1: initialize EEGLAB
+
+init_eeglab(cfg.eeglab_path);
+
+%% Step 2: Load and convert raw EEG files
+fpritf('\n[SCRIPT] Loading raw EEG data and converting to .set format...\n');
+load_eeg(cfg, '*.vhdr')
+disp('Step 2 completed: EEG data loaded and saved in .set format.');
