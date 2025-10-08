@@ -27,10 +27,22 @@ function cfg = config()
 % Author: [YOUR NAME]
 % Date: [ TODAY]
 
-    %% --- PATH ---
+    %% --- EEGLAB PATH ---
     cfg.eeglab_path = (".software/eeglab2025.1") % Path to EEGLAB
-    cfg.dataset_path = './data/';             % Row data folder
-    cfg.output_path  = './results/';          % Results folder
+
+    %% --- FOLDER PATH ---
+    % Base project directory, where EEG files are located.
+    cfg.project_root = 'C:\EEG_project';       
+
+    % Input/Output path for each pre-processing stage:
+    cfg.raw_folder = fullfile(project_root,'data_raw');                  % Row data folder
+    cfg.import_folder  =  fullfile(project_root,'data_imported');        % .set data imported folder
+    cfg.filtered_folder =  fullfile(project_root,'data_filtered');       % folder with filtered EEG
+    cfg.epoch_folder =  fullfile(project_root,'data_epoched');
+    cfg.ica_folder =  fullfile(project_root,'data_ica');
+    cfg.clean_folder = fullfile(project_root,'data_clean');
+
+    % Subject info
     cfg.subject_id   = 'sub-01';              % ID subject
     cfg.filename     = 'sub-01_task-gonogo.set'; % file name EEG (EEGLAB .set)
 
