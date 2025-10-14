@@ -1,3 +1,6 @@
+function init_eeglab(eeglab_path)
+
+
 %%% This script initialize and launch EEGLAB
 % 
 % USAGE: 
@@ -11,7 +14,7 @@
 %             Check if EEGLAB is alrady on the matlab path
 
 
-function init_eeglab(eeglab_path)
+
 
 %input check
 
@@ -37,6 +40,3 @@ fprintf("Launching EEGLAB...\n");
 eeglab; % Start EEGLAB open GUI
 
 end
-
-
-   
