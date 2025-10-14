@@ -9,6 +9,7 @@
 %   0. Load configuration from config.m (paths, parameters, etc.)
 %   1. Initialize EEGLAB, making all its functions available for use
 %   2. Load EEG raw data and converts in .set files
+%   3. Visual inspection
 %
 % Note: Users should create their own config.m template based on config.m
 %       and adjust paths according to their system.
@@ -21,14 +22,14 @@ fprintf('\n===== STARTING ERP GO/NO-GO PIPELINE =====\n');
 fprintf('\n[Step 0] Loading configuration...\n');
 cfg = config();
 disp(cfg)
-
 %%  Step 1: 
 fprintf('\n[Step 1] Initializing EEGLAB...\n');
 init_eeglab(cfg.eeglab_path);
 
 %% Step 2: 
-fprintf('\n[Step 2] Importing raw EEG files...\n');
-run('script/scritp_load_eeg.m');
+fprintf('\n[Step 2] Import EEG raw files and tranform them in .set files')
+cfg=config();
+import_EEG(cfg.input_folder,cfg.output_folder,cfg.file_ext);
 
 %% Step 3:
 
@@ -36,4 +37,3 @@ run('script/scritp_load_eeg.m');
 
 
 %%%% add at the end fprintf('\n===== PIPELINE COMPLETED SUCCESSFULLY =====\n'); %%%
-
