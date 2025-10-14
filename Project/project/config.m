@@ -28,23 +28,26 @@ function cfg = config()
 % Date: [ TODAY]
 
     %% --- EEGLAB PATH ---
-    cfg.eeglab_path = (".software/eeglab2025.1") % Path to EEGLAB
+    cfg.eeglab_path = "/mnt/raid/software/eeglab2024.1"; % Path to EEGLAB
 
-    %% --- FOLDER PATH ---
+    %% --- FOLDER PATH --- 
     % Base project directory, where EEG files are located.
-    cfg.project_root = 'C:\EEG_project';       
+    cfg.project_root = "/mnt/raid/RU1/glazzaro/ERP_Go-Nogo_Pipeline";                              %Scritp github clone folder
+    cfg.input_folder = "/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/Pre_processing/Control/ALL_CONTROL/"; % Row data folder
+    cfg.output_folder = "/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/Pre_processing/Control/ALL_CONTROL/data_imported"; %import_folder with .set data;;;
+    
+    %% === File extension ===
 
-    % Input/Output path for each pre-processing stage:
-    cfg.raw_folder = fullfile(cfg.project_root,'data_raw');                  % Row data folder
-    cfg.import_folder  =  fullfile(cfg.project_root,'data_imported');        % .set data imported folder
-    cfg.filtered_folder =  fullfile(cfg.project_root,'data_filtered');       % folder with filtered EEG
-    cfg.epoch_folder =  fullfile(cfg.project_root,'data_epoched');
-    cfg.ica_folder =  fullfile(cfg.project_root,'data_ica');
-    cfg.clean_folder = fullfile(cfg.project_root,'data_clean');
+    cfg.file_ext      = '*.vhdr';            
+    
 
-    % Subject info
-    cfg.subject_id   = 'sub-01';              % ID subject
-    cfg.filename     = 'sub-01_task-gonogo.set'; % file name EEG (EEGLAB .set)
+    %% Input/Output path for each pre-processing stage:
+%     cfg.filtered_folder = fullfile(cfg.xxxxx,'data_filtered');        % folder with filtered EEG
+%     cfg.epoch_folder =    fullfile(cfg.xxxxx,'data_epoched');
+%     cfg.ica_folder =      fullfile(cfg.xxxxxx,'data_ica');
+%     cfg.clean_folder =    fullfile(cfg.xxxxxxx,'data_clean');
+
+
 
     %% --- Filtri ---
     cfg.filter.low_cutoff  = 0.1;   % Hz - high-pass (rimuove drift lento)
@@ -67,4 +70,3 @@ function cfg = config()
     cfg.plot.ylim       = [-10 10];           % microvolt, per coerenza dei plot
 
 end
-
