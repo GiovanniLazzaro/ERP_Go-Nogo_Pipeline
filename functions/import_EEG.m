@@ -46,7 +46,7 @@ function import_EEG(input_folder,output_folder,file_ext)
         [~, name_no_ext, ~] = fileparts(files(i).name); 
 
         EEG.setname  = name_no_ext;
-        EEG.filename = char(EEG.setname);
+        EEG.filename = char(EEG.setname); % char is used to resolve conflict and transform string in a logical operator char
         EEG.filepath = char(output_folder);
 
         try
