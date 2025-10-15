@@ -14,7 +14,7 @@ function import_EEG(input_folder,output_folder,file_ext)
 %   file_ext      : file extension to search for (e.g., '*.vhdr' or '*.edf')
 %
 % Example:
-%   load_EEG_files(cfg.raw_folder, cfg.import_folder, '*.vhdr')
+%   import_EEG(cfg.raw_folder, cfg.import_folder, '*.vhdr')
 %   
 % INPUT and OUTPUT PATH are taken from config.m files (see config.m)
 %
@@ -40,7 +40,8 @@ function import_EEG(input_folder,output_folder,file_ext)
     for i = 1:length(files)
         fprintf('\nImporting: %s\n', files(i).name);
 
-        %EEGLAB function to load BrainVision files ("*.vhdr) extension
+        %EEGLAB function to load BrainVision files .vhdr extension
+        
         EEG = pop_loadbv(input_folder, files(i).name);
         [~, name_no_ext, ~] = fileparts(files(i).name); 
 
