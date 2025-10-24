@@ -33,12 +33,12 @@ function import_EEG(input_folder, output_folder, file_ext)
         CURRENTSET = 0;
     end
 
-    % Check output folder (con 'char()' per sicurezza)
+    % Check output folder 
     if ~isfolder(char(output_folder))
         mkdir(char(output_folder));
     end
 
-    % Looking for EEG raw file (con 'char()' per sicurezza)
+    % Looking for EEG raw file 
     files = dir(fullfile(char(input_folder), file_ext));
     if isempty(files)
         warning(' No existing files %s have been found in %s', file_ext, input_folder);
@@ -77,7 +77,7 @@ function import_EEG(input_folder, output_folder, file_ext)
         end
     end
 
-    % Optional: Refresh GUI
+    % (Optional: If you want to Refresh GUI then use: )
     %  eeglab redraw; 
     
     fprintf('\nAll files imported, saved, and added to ALLEEG!\n');
