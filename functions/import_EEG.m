@@ -1,12 +1,11 @@
 function import_EEG(input_folder, output_folder, file_ext)
-
 % =========================================================================
 % 
 % Load BrainVision EEG files (.vhdr) from input_folder and save them as
 % .set files in output_folder. 
 %
 % Usage: 
-%       import_EEG_def(input_folder,output_folder, file_ext)
+%       import_EEG(input_folder,output_folder, file_ext)
 
 % Inputs:
 %   input_folder  : path to folder containing raw EEG files
@@ -14,7 +13,7 @@ function import_EEG(input_folder, output_folder, file_ext)
 %   file_ext      : file extension to search for (e.g., '*.vhdr' or '*.edf')
 %
 % Example:
-%   load_EEG_files(cfg.raw_folder, cfg.import_folder, '*.vhdr')
+%   import_EEG(cfg.input_folder, cfg.output_folder, '*.vhdr')
 %   
 % INPUT and OUTPUT PATH are taken from config.m files (see config.m)
 %
@@ -25,7 +24,7 @@ function import_EEG(input_folder, output_folder, file_ext)
 
 
 
-    %Setting EEGLAB global variables 
+    %Setting Global Variables 
     global ALLEEG EEG CURRENTSET;
     if isempty(ALLEEG)
         ALLEEG = [];
@@ -34,13 +33,13 @@ function import_EEG(input_folder, output_folder, file_ext)
         CURRENTSET = 0;
     end
 
-    % Check output folder 
-    if ~isfolder(output_folder)
-        mkdir(output_folder);
+    % Check output folder (con 'char()' per sicurezza)
+    if ~isfolder(char(output_folder))
+        mkdir(char(output_folder));
     end
 
-    % Looking for EEG raw file 
-    files = dir(fullfile(input_folder), file_ext);
+    % Looking for EEG raw file (con 'char()' per sicurezza)
+    files = dir(fullfile(char(input_folder), file_ext));
     if isempty(files)
         warning(' No existing files %s have been found in %s', file_ext, input_folder);
         return;
