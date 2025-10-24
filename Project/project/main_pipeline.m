@@ -1,6 +1,6 @@
-%%
-%%              Main PIPELINE  - ERP Go/No-Go Project
-%% _________________________________________________________________
+
+%         Main PIPELINE  - ERP Go/No-Go Project
+% ______________________________________________________
 % This script runs the entire EEG preprocessing pipeline.
 % It sequentially calls scripts from the scripts folder,
 % which in turn use functions from the functions folder.
@@ -14,14 +14,13 @@
 %
 % Note: Users should create their own config.m template based on config.m
 %       and adjust paths according to their system.
-%___________________________________________________________________
+%__________________________________________________________
 
 clear; clc; close all;
-
 fprintf('\n===== STARTING ERP GO/NO-GO PIPELINE =====\n');
 
-
-%%  STEP 0: ____________________________________________
+%__________________________________________________________
+%%  Step 0: 
 fprintf('\n[Step 0] Loading configuration...\n');
 try
     cfg = config();
@@ -29,8 +28,8 @@ try
 catch ME
     error ('impossible to execute config.m: %s', ME.message);
 end
-
-%%  STEP 1: ____________________________________________
+%___________________________________________________________
+%%  Step 1:
 global ALLEEG EEG CURRENTSET ALLCOM;
 try
     addpath(cfg.eeglab_path); %add eeglab_path
@@ -38,19 +37,18 @@ try
 catch ME
     error (' impossible to start EEGLAB: %s', ME.message);
 end
-%% _____________________________________________________
-%% STEP 2:
+%___________________________________________________________
+%% Step 2:
 
 fprintf('\n[Step 2] Import EEG raw files and tranform them in .set files')
 try
-    carico_EEG(cfg.input_folder,cfg.output_folder,cfg.file_ext);
+    import_EEG(cfg.input_folder,cfg.output_folder,cfg.file_ext);
     fprintf('Step 2 completed. \n')
 catch ME
     error('error during file loading: %s', ME.message);
 end
-%______________________________________________________
-%% STEP 3:
+%___________________________________________________________
+%% Step 3:
 
 
 %%%% add at the end fprintf('\n===== PIPELINE COMPLETED SUCCESSFULLY =====\n'); %%%
-
