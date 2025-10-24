@@ -28,13 +28,13 @@ function cfg = config()
 % Date: [ TODAY]
 
     %% --- EEGLAB PATH ---
-    cfg.eeglab_path = "/mnt/raid/software/eeglab2024.1"; % Path to EEGLAB
+    cfg.eeglab_path = "/path/EEGLAB/eeglab2024.1"; % Path to EEGLAB
 
     %% --- FOLDER PATH --- 
     % Base project directory, where EEG files are located.
-    cfg.project_root = "/mnt/raid/RU1/glazzaro/ERP_Go-Nogo_Pipeline";                              %Scritp github clone folder
-    cfg.input_folder = "/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/Pre_processing/Control/ALL_CONTROL/"; % Row data folder
-    cfg.output_folder = "/mnt/raid/Raw_data/MMCI/GIOVANNI/GNG/Pre_processing/Control/ALL_CONTROL/data_imported"; %import_folder with .set data;;;
+    cfg.project_root = "/folder/clone/github/ERP_Go-Nogo_Pipeline";  %Path to this repository scritps, github clone folder
+    cfg.input_folder = "/input_folder/Raw_data"; % add path to the EEG raw data folder, where EEG.vhdr EEG.eeg EEG.vmrk are stored together.
+    cfg.output_folder = "/Raw_data/output_folder/"; % add the path for the import_folder, the folder where you want to save EEG.set data;;;
     
     %% === File extension ===
 
