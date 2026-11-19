@@ -80,6 +80,19 @@ Each file corresponds to one function, named consistently:
 
 ---
 
+## Behavioural analysis (from EEG markers)
+`scripts/script_behavior.m` computes, for each raw BrainVision recording, hits, omissions, commission errors,
+correct rejections and reaction times from the stimulus and response markers (S2/S8, S4/S5), using
+`functions/behav_from_markers.m` (EEGLAB not required). It also checks that the order of the stimulus markers
+matches the condition list used (`task/conditions/CONDITION_<n>.xlsx`, taken from the file name, e.g. `..._condfile_2.vhdr`).
+Settings are in the `cfg.behav` section of `config.m`.
+
+Output: one CSV per recording with one row per trial (`<recording>_behav_trials.csv`) and a summary of all
+recordings (`behavior_summary.csv`).
+
+Accuracy is computed from the markers because in the PsychoPy output of the original task version the column
+`key_resp_2.corr` is wrong (see [`task/README.md`](task/README.md)).
+
 ## Usage -  How to run
 instruction how to use these script:  -- work in progress --
 

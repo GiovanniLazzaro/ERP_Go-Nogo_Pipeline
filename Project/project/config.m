@@ -64,6 +64,13 @@ function cfg = config()
     %% --- ERP Analysis ---
     cfg.erp.average_by = 'condition';         % come fare l’average (per condizione)
 
+    %% --- Behaviour from EEG markers (scripts/script_behavior.m) ---
+    cfg.behav.codes = struct('go', 2, 'nogo', 8, 'resp_go', 4, 'resp_nogo', 5); % S2, S8, S4, S5
+    cfg.behav.resp_window_ms = 1000;          % response window of the task
+    cfg.behav.min_rt_ms      = 150;           % faster responses = anticipations (excluded from RT stats)
+    cfg.behav.list_regex     = 'condfile_(\d+)'; % condition list number in the file name (e.g. ..._condfile_2.vhdr)
+    cfg.behav.output_folder  = "/output_folder/behavior"; % where the behavioural tables are saved
+
     %% --- Plot ---
     cfg.plot.channels   = {'Fz','Cz','Pz'};   % canali di interesse
     cfg.plot.time_range = [-0.2 0.8];         % asse x del plot
