@@ -23,7 +23,7 @@ The experiment was designed with PsychoPy (v2023.2.3). The stimulation computer 
 
 The 'go' stimulus was a green circle and the 'nogo' stimulus a red circle, presented at the centre of the screen.
 The task consisted of 200 trials (80% 'go', 20% 'nogo': 160 'go' and 40 'nogo') presented in a pseudo-randomised order,
-with the first trial always 'go' and no two consecutive 'nogo' trials. A self-paced pause was given after 100 trials (20 'nogo' trials in each half).
+with the first trial always 'go' and no two consecutive 'nogo' trials. A self-paced pause was given after 100 trials. Three different pseudo-randomised lists were used.
 Participants were instructed to respond as fast as possible with their dominant hand by pressing the space bar only when the 'go' stimulus appeared,
 and to withhold the response for the 'nogo' stimulus.
 
