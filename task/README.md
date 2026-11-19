@@ -105,7 +105,7 @@ Notes for data collected with the original version:
 - In the original data `key_resp_2.keys` is a list (`['space']`); in data from
   this version it is a string (`space`).
 
-The original scripts are available in the git history (commit `eda3b42`).
+
 
 ## Timing notes
 
