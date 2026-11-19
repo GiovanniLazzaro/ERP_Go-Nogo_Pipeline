@@ -6,9 +6,10 @@ Visual Go/No-Go task for EEG (PsychoPy).
 Originally built with the PsychoPy Builder (v2023.2.3) and cleaned for public
 release: local paths removed, the three per-list scripts merged into one
 (the condition list is chosen in the start-up dialog), and hardware settings
-collected in the CONFIGURATION block below. Timing and trigger logic are
-unchanged from the version used for data collection (see task/README.md,
-"Known issues").
+collected in the CONFIGURATION block below. Timing is unchanged from the
+version used for data collection; two bugs were fixed (accuracy column and
+reset of the response trigger), see task/README.md, "Changes from the
+version used for data collection".
 
 Authors: Elena Scarpa, Giovanni Lazzaro
 
@@ -917,13 +918,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 theseKeys = key_resp_2.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
                 _key_resp_2_allKeys.extend(theseKeys)
                 if len(_key_resp_2_allKeys):
-                    key_resp_2.keys = [key.name for key in _key_resp_2_allKeys]  # storing all keys
-                    key_resp_2.rt = [key.rt for key in _key_resp_2_allKeys]
-                    key_resp_2.duration = [key.duration for key in _key_resp_2_allKeys]
+                    # store the first key only (the first press ends the routine), so that
+                    # keys is a string ('space') and the correctness check below works
+                    key_resp_2.keys = _key_resp_2_allKeys[0].name
+                    key_resp_2.rt = _key_resp_2_allKeys[0].rt
+                    key_resp_2.duration = _key_resp_2_allKeys[0].duration
                     # was this correct?
-                    # NOTE: keys is a list here, so this comparison is always False and
-                    # key_resp_2.corr is not reliable. Recompute accuracy offline from
-                    # stim_type + key_resp_2.keys (see task/README.md, Known issues).
                     if (key_resp_2.keys == str(corrAnswer)) or (key_resp_2.keys == corrAnswer):
                         key_resp_2.corr = 1
                     else:
@@ -931,19 +931,15 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             # Run 'Each Frame' code from trigger_resp
-            # response triggers (sent on the next screen flip after the key press)
-            if len(key_resp_2.keys) > 0 and not resp_pulse_started:
-                if key_resp_2.keys[0] == corrAnswer:
+            # response trigger (sent on the next screen flip after the key press);
+            # the line is reset to 0 in the iti_1 routine, after >= 5 ms
+            if key_resp_2.keys and not resp_pulse_started:
+                if stim_type == 'go':
                     win.callOnFlip(port.write, [TRIG_RESP_GO])
                 else:
                     win.callOnFlip(port.write, [TRIG_RESP_NOGO])
-                    resp_pulse_start_time = globalClock.getTime()
-                    resp_pulse_stared = True  # NOTE: typo kept from the original (see README)
-
-            if resp_pulse_started and not resp_pulse_ended:
-                if globalClock.getTime() - resp_pulse_star_time >= 0.005:
-                    win.callOnFlip(port.write, [TRIG_RESET])
-                    resp_pulse_ended = True
+                resp_pulse_start_time = globalClock.getTime()
+                resp_pulse_started = True
 
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1036,6 +1032,16 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if text_2.status == STARTED:
                 # update params
                 pass
+
+            # Run 'Each Frame' code from trigger_reset
+            # bring the trigger line back to 0 after a response (or stimulus) pulse
+            if (resp_pulse_started and not resp_pulse_ended
+                    and globalClock.getTime() - resp_pulse_start_time >= 0.005):
+                win.callOnFlip(port.write, [TRIG_RESET])
+                resp_pulse_ended = True
+            if pulse_started and not pulse_ended:
+                win.callOnFlip(port.write, [TRIG_RESET])
+                pulse_ended = True
 
             # if text_2 is stopping this frame...
             if text_2.status == STARTED:
