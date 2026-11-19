@@ -16,19 +16,25 @@ The goal is to provide a modular and replicable pipeline that facilitates ERP an
 This project may be useful for neuroscientists, psychologists, or anyone with an interest in neurophysiology-related research
 
 ## Go/Nogo Visual Task paradigm
-The computer that delivered the stimuli was allocated on a desk and participants were seated in a comfortable chair maintaining 
-70 cm from the screen. The experiment was designed using the Psychopy software (PsychoPy v2023.2.3). The computer was linked through an USB cable to the hdEEG acquisition system.
-The ‘go’ stimulus was presented for 100 ms as a green circle on the center of the screen. Instead, the ‘nogo’ stimulus was presented for 100ms as a red circle on the center of the screen. 
-Each stimulus was presented according to a specific proportion (80% “go”-20%”nogo”) for a total of 200 trials.
-Participants were instructed to always respond using a keyboard with their dominant hand and pressing the space bar, as soon as possible,
-only when the ‘go’ stimulus appeared on the screen. For the ‘nogo’ stimulus, participants were instructed to retain the response and do not press any keys.
-Each stimulus was presented in succession with a fixation before (1 sec) and an interstimulus interval (ITI) that ranges between 0.50/0.75/1 sec. Given the regular distance of the stimuli, this range 
-was selected to avoid that predictability of the stimulus could affect habituation to novelty 
-when pressing the press bar. To collect the participant’s response, each time a stimulus was delivered, a trigger box sent a marker to the hdEEG acquisition system to 
-be displayed on the recording screen. In this way it was possible to check, online and offline, the correctness of the participant’s response. The appearance of a “go” and “nogo” 
-stimuli on the task’s screen was marked on the hdEEG recording by the triggers S2 and S8, respectively. This allowed accurately indicating the onset of each stimulus. 
-Additionally, the triggers named S4 and S5 were added to mark the exact onset of each response. The S4 trigger appeared each time the participant responded correctly by 
-pressing the space bar at the “go” stimulus. Conversely, the S5 trigger appeared on the hdEEG trace when the participant erroneously pressed the space bar at the “nogo” stimulus
+The PsychoPy code to run the task is in the [`task/`](task/) folder (see [`task/README.md`](task/README.md) for instructions).
+
+The computer that delivered the stimuli was placed on a desk and participants were seated in a comfortable chair, 70 cm from the screen.
+The experiment was designed with PsychoPy (v2023.2.3). The stimulation computer was connected through a USB cable (serial trigger box) to the hdEEG acquisition system.
+
+The 'go' stimulus was a green circle and the 'nogo' stimulus a red circle, presented at the centre of the screen.
+The task consisted of 200 trials (80% 'go', 20% 'nogo': 160 'go' and 40 'nogo') presented in a pseudo-randomised order,
+with the first trial always 'go' and no two consecutive 'nogo' trials. A self-paced pause was given after 100 trials (20 'nogo' trials in each half).
+Participants were instructed to respond as fast as possible with their dominant hand by pressing the space bar only when the 'go' stimulus appeared,
+and to withhold the response for the 'nogo' stimulus.
+
+Each trial started with a blank screen of variable duration (0.5, 0.75 or 1 s, randomly chosen) to reduce the predictability of stimulus onset.
+The stimulus then remained on screen for up to 1 s, or until the space bar was pressed (response window: 1 s), and was followed by a 0.5 s blank inter-trial interval.
+
+A trigger was sent to the hdEEG acquisition system at the onset of each stimulus and of each response, so that the correctness of the participant's
+response could be checked online and offline. The onset of 'go' and 'nogo' stimuli was marked by the triggers S2 and S8, respectively.
+The triggers S4 and S5 marked the onset of each response: S4 when the participant correctly pressed the space bar after a 'go' stimulus,
+S5 when the participant erroneously pressed the space bar after a 'nogo' stimulus (commission error).
+Omissions ('go' without response) and correct rejections ('nogo' without response) have no response trigger.
 
 Fig.1 This figure represents the Go/Nogo Task paradigm. 
 <img width="1007" height="639" alt="image" src="https://github.com/user-attachments/assets/7af313c4-6463-4090-a76a-981bbb1f1c9d" />
