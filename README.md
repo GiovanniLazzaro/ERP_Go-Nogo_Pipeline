@@ -2,6 +2,9 @@
 ---WORK IN PROGRESS--
 MATLAB preprocessing scripts for ERP extraction from Go/No-Go task EEG data
 
+-- DATA AVAILABILITY -- 
+PSYCHOPY GO/NOGO TASK scritp is now available! 20/11/2026
+
 ## Description
 
 This project defines a preprocessing pipeline for extracting event-related potentials (ERPs) from EEG data collected during a Go/No-Go task.
